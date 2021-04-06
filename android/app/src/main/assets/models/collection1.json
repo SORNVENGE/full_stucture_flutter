@@ -1,0 +1,12 @@
+{
+  "createDate": "09/07/2020",
+  "CollectionName": "Test1",
+  "assetsURLs": [
+    "models/test1.json",
+    "models/test2.json",
+    "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/mirrorTest/package_test_v2_think_will_work/offsets.json",
+    "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/offsets.json"
+  ],
+  "UniqueCollectionReference": "Steve1",
+  "organisation": "Vyking"
+}

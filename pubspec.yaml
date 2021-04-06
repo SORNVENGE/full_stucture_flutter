@@ -1,0 +1,74 @@
+name: rare_pair
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  google_fonts: ^2.0.0
+  provider: ^5.0.0
+  flutter_gradients: ^1.0.0+3
+  # flutter_svg: ^0.19.3
+  flutter_custom_clippers: ^1.1.2
+  smooth_page_indicator: ^0.2.1
+  # just_audio: ^0.7.0
+  carousel_pro: ^1.0.0
+  photo_view: ^0.11.1
+  cached_network_image: ^3.0.0
+  flutter_vector_icons: ^1.0.0
+
+  flutter_switch: ^0.2.0
+  flutter_html: ^1.3.0
+  dio: ^4.0.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/002.png
+    - assets/images/003.png
+    - assets/images/bg.jpg
+    - assets/models/
+    - assets/images/
+    - assets/images/shoes/
+    - assets/images/products/
+    - assets/images/icons/
+    - assets/images/watches/
+    - assets/sound/
+    - assets/images/logos/
+    - assets/images/shoe/
+    - assets/images/credit_debit.png
+    - assets/images/drawer-bg.png
+    - assets/images/bg3-1.png
+    - assets/images/ic-1.png
+    - assets/images/ic-2.png
+    - assets/images/ic-3.png
+    - assets/flags/
+    - assets/images/chat/user1.jpg
+    - assets/images/chat/user2.jpg
+    - assets/images/chat/user3.jpg
+
+  fonts:
+    - family: Audiowide
+      fonts:
+        - asset: assets/fonts/audiowide-regular.ttf
+    - family: Gugi
+      fonts:
+        - asset: assets/fonts/gugi-regular.ttf
+    - family: outline
+      fonts:
+        - asset: assets/fonts/outline.ttf

@@ -1,0 +1,257 @@
+{
+  "schemaVersion": "1.1",
+  "date_time": "2020-04-02 14:20:54.843",
+  "footLeft": {
+    "apparel": [
+      {
+        "name": "shoe",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/model_r.glb",
+        "usdz_uri": "model_r.usdz",
+        "scalingFactor": 1,
+        "translation": [
+          0.012702057425090924,
+          -0.04671961117097534,
+          -0.15072764594746008
+        ],
+        "scale": [
+          -0.01,
+          0.01,
+          0.01
+        ],
+        "rotation": [
+          3.141592653589793,
+          1.5517101152243062,
+          -3.141592653589793
+        ],
+        "quaternion": [
+          0,
+          0.7138224754072711,
+          0,
+          0.7003266906261933
+        ],
+        "hidden": false
+      }
+    ],
+    "occluders": [
+      {
+        "name": "plane",
+        "mask": "Trousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/plane_occ_r.glb",
+        "usdz_uri": "plane_occ_r.usdz",
+        "scalingFactor": 1,
+        "translation": [
+          -8.989905678367164,
+          15.854686420592355,
+          -0.5654683901840571
+        ],
+        "scale": [
+          76.37507937388085,
+          76.37507937388085,
+          76.37507937388085
+        ],
+        "rotation": [
+          0.34342003868505355,
+          1.5842431280283669,
+          -1.5573495255614263
+        ],
+        "quaternion": [
+          -0.39944017290141115,
+          0.5780284829579827,
+          0.4149863781512314,
+          0.5780284829579828
+        ],
+        "hidden": false
+      },
+      {
+        "name": "leg",
+        "mask": "LegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/leg_occ_r.glb",
+        "usdz_uri": "leg_occ_r.usdz",
+        "scalingFactor": 1,
+        "translation": [
+          -4.4494850084102975,
+          9.077497479372987,
+          -0.07664300207530116
+        ],
+        "scale": [
+          100,
+          87.40389846781112,
+          100
+        ],
+        "rotation": [
+          0,
+          1.5707963267948966,
+          0
+        ],
+        "quaternion": [
+          0,
+          0.7071067811865475,
+          0,
+          0.7071067811865476
+        ],
+        "hidden": false
+      },
+      {
+        "name": "ankle",
+        "mask": "FootLegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/ankle_occ_r.glb",
+        "usdz_uri": "ankle_occ_r.usdz",
+        "scalingFactor": 1,
+        "translation": [
+          -5.025763703731258,
+          11.555361790990421,
+          -0.07940063059048695
+        ],
+        "scale": [
+          168.12487083915653,
+          305.8252542299152,
+          158.128570985706
+        ],
+        "rotation": [
+          0.011325690434554066,
+          0.0037228976414584547,
+          0.6351667128320718
+        ],
+        "quaternion": [
+          0.005960892438052847,
+          0,
+          0.3122761465905205,
+          0.9499726712026605
+        ],
+        "hidden": false
+      }
+    ]
+  },
+  "footRight": {
+    "apparel": [
+      {
+        "name": "shoe",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/model_r.glb",
+        "usdz_uri": "model_r.usdz",
+        "scalingFactor": 1,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          0,
+          -0.7138224754072711,
+          0,
+          0.7003266906261933
+        ],
+        "translation": [
+          -0.012702057425090924,
+          -0.04671961117097534,
+          -0.15072764594746008
+        ],
+        "rotation": [
+          3.141592653589793,
+          -1.5517101152243062,
+          3.141592653589793
+        ],
+        "scale": [
+          0.01,
+          0.01,
+          0.01
+        ]
+      }
+    ],
+    "occluders": [
+      {
+        "name": "plane",
+        "mask": "Trousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/plane_occ_r.glb",
+        "usdz_uri": "plane_occ_r.usdz",
+        "scalingFactor": 1,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          -0.39944017290141115,
+          0.5780284829579827,
+          0.4149863781512314,
+          0.5780284829579828
+        ],
+        "translation": [
+          -8.989905678367164,
+          15.854686420592355,
+          -0.5654683901840571
+        ],
+        "rotation": [
+          0.34342003868505355,
+          1.5842431280283669,
+          -1.5573495255614263
+        ],
+        "scale": [
+          76.37507937388085,
+          76.37507937388085,
+          76.37507937388085
+        ]
+      },
+      {
+        "name": "leg",
+        "mask": "LegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/leg_occ_r.glb",
+        "usdz_uri": "leg_occ_r.usdz",
+        "scalingFactor": 1,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          0,
+          0.7071067811865475,
+          0,
+          0.7071067811865476
+        ],
+        "translation": [
+          -4.4494850084102975,
+          9.077497479372987,
+          -0.07664300207530116
+        ],
+        "rotation": [
+          0,
+          1.5707963267948966,
+          0
+        ],
+        "scale": [
+          100,
+          87.40389846781112,
+          100
+        ]
+      },
+      {
+        "name": "ankle",
+        "mask": "FootLegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/ankle_occ_r.glb",
+        "usdz_uri": "ankle_occ_r.usdz",
+        "scalingFactor": 1,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          0.005960892438052847,
+          0,
+          0.3122761465905205,
+          0.9499726712026605
+        ],
+        "translation": [
+          -5.025763703731258,
+          11.555361790990421,
+          -0.07940063059048695
+        ],
+        "rotation": [
+          0.011325690434554066,
+          0.0037228976414584547,
+          0.6351667128320718
+        ],
+        "scale": [
+          168.12487083915653,
+          305.8252542299152,
+          158.128570985706
+        ]
+      }
+    ]
+  },
+  "left_foot": false,
+  "right_foot": true,
+  "both_feet": false,
+  "icon_uri": "shoeIcon.png",
+  "shortShoeDescription": "Nike",
+  "longShoeDescription": "Airmax 270 Bauhaus",
+  "environmentMap": "envMap.jpg"
+}

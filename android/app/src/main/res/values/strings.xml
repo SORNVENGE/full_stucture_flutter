@@ -1,0 +1,9 @@
+<resources>
+    <string name="lzmaFileName">VykingData.lzma</string>
+    <string name="indirectLightIbl">phone_shop_2k</string>
+    <string name="indirectLightIblIntensity">30000.0f</string>
+    <string name="internal_shoes">Internal Shoes</string>
+    <string name="setting_vykingAccessoriesInventoryUri_defaultValue">https://vykingsneakerkitnative.s3.amazonaws.com/SneakerStudio/may_android_ios/android_collection_poizon_models.json</string>
+    <string name="setting_vykingAccessoriesInventoryUri_key">vykingAccessoriesInventoryUri</string>
+    <string name="setting_vykingAccessoriesInventoryUri_title">Uri for Inventory of Vyking Accessories</string>
+</resources>

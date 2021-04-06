@@ -1,0 +1,257 @@
+{
+  "schemaVersion": "1.0",
+  "date_time": "2020-03-17 16:15:00.563",
+  "footLeft": {
+    "apparel": [
+      {
+        "name": "shoe",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/stephanTest/SneakerStudioDemo/AprilModels/test1/airmax270_android_single_shoe/model_l.glb",
+        "usdz_uri": "model_l.usdz",
+        "scalingFactor": 0.01,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          0,
+          0.7167069878076844,
+          0,
+          0.6973744285730844
+        ],
+        "translation": [
+          1.7521630110057487,
+          0.9267938081034792,
+          -14.223573515096023
+        ],
+        "rotation": [
+          -3.141592653589793,
+          1.5434551077247145,
+          -3.141592653589793
+        ],
+        "scale": [
+          1.147870799550714,
+          1.147870799550714,
+          1.147870799550714
+        ]
+      }
+    ],
+    "occluders": [
+      {
+        "name": "plane",
+        "mask": "Trousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/SteveTest/air_jordan_android/plane_occ_l.glb",
+        "usdz_uri": "plane_occ_l.usdz",
+        "scalingFactor": 1,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          -0.5664062369248328,
+          0,
+          0,
+          0.8241261886220157
+        ],
+        "translation": [
+          0,
+          10,
+          -30
+        ],
+        "rotation": [
+          -1.2042771838760875,
+          0,
+          0
+        ],
+        "scale": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "leg",
+        "mask": "LegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/SteveTest/air_jordan_android/leg_occ_l.glb",
+        "usdz_uri": "leg_occ_l.usdz",
+        "scalingFactor": 1,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          0,
+          -0.7587813544633237,
+          0,
+          0.6513454199722327
+        ],
+        "translation": [
+          -12.266869816755348,
+          0,
+          -2.667906619058455
+        ],
+        "rotation": [
+          3.141592653589793,
+          -1.4187124458056855,
+          3.141592653589793
+        ],
+        "scale": [
+          0.7282277583844514,
+          0.5237255111476972,
+          0.7282277583844514
+        ]
+      },
+      {
+        "name": "ankle",
+        "mask": "FootLegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/SteveTest/air_jordan_android/ankle_occ_l.glb",
+        "usdz_uri": "ankle_occ_l.usdz",
+        "scalingFactor": 1,
+        "hidden": false,
+        "opacity": 1,
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "footRight": {
+    "apparel": [
+      {
+        "name": "shoe",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/SteveTest/air_jordan_android/model_l.glb",
+        "usdz_uri": "model_l.usdz",
+        "scalingFactor": 0.01,
+        "translation": [
+          -1.7521630110057487,
+          0.9267938081034792,
+          -14.223573515096023
+        ],
+        "scale": [
+          -1.147870799550714,
+          1.147870799550714,
+          1.147870799550714
+        ],
+        "rotation": [
+          -3.141592653589793,
+          -1.5434551077247145,
+          3.141592653589793
+        ],
+        "quaternion": [
+          0,
+          -0.7167069878076844,
+          0,
+          0.6973744285730844
+        ],
+        "hidden": false
+      }
+    ],
+    "occluders": [
+      {
+        "name": "plane",
+        "mask": "Trousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/SteveTest/air_jordan_android/plane_occ_l.glb",
+        "usdz_uri": "plane_occ_l.usdz",
+        "scalingFactor": 1,
+        "translation": [
+          0,
+          10,
+          -30
+        ],
+        "scale": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          -1.2042771838760875,
+          0,
+          0
+        ],
+        "quaternion": [
+          -0.5664062369248328,
+          0,
+          0,
+          0.8241261886220157
+        ],
+        "hidden": true
+      },
+      {
+        "name": "leg",
+        "mask": "LegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/SteveTest/air_jordan_android/leg_occ_l.glb",
+        "usdz_uri": "leg_occ_l.usdz",
+        "scalingFactor": 1,
+        "translation": [
+          -12.266869816755348,
+          0,
+          -2.667906619058455
+        ],
+        "scale": [
+          0.7282277583844514,
+          0.5237255111476972,
+          0.7282277583844514
+        ],
+        "rotation": [
+          3.141592653589793,
+          -1.4187124458056855,
+          3.141592653589793
+        ],
+        "quaternion": [
+          0,
+          -0.7587813544633237,
+          0,
+          0.6513454199722327
+        ],
+        "hidden": false
+      },
+      {
+        "name": "ankle",
+        "mask": "FootLegAndTrousers",
+        "glb_uri": "https://vykingsneakerkitnative.s3.amazonaws.com/SteveTest/air_jordan_android/ankle_occ_l.glb",
+        "usdz_uri": "ankle_occ_l.usdz",
+        "scalingFactor": 1,
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "hidden": false
+      }
+    ]
+  },
+  "left_foot": true,
+  "right_foot": false,
+  "both_feet": false,
+  "icon_uri": "shoeIcon.png",
+  "shortShoeDescription": "Nike",
+  "longShoeDescription": "Air Jordan 1 Solefly OG",
+  "environmentMap": "envMap.jpg"
+}
