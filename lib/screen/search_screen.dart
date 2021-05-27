@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rare_pair/components/app_card.dart';
+import 'package:provider/provider.dart';
+import 'package:rare_pair/components/app_card_search.dart';
 import 'package:rare_pair/data/dummy.dart';
 import 'package:rare_pair/models/product_model.dart';
 import 'package:rare_pair/screens/product_detail.dart';
+import 'package:rare_pair/services/firestore_service.dart';
+import 'package:rare_pair/state/page_notifier.dart';
 import 'package:rare_pair/util/fade_navigator.dart';
+import 'dart:math';
+import 'package:rare_pair/local/local.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -11,10 +16,26 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  FirestoreServices firestoreServices = FirestoreServices();
   bool searching = false;
+  var allSearchData = [];
+
+  @override
+  void initState() {
+    readSearch();
+    super.initState();
+  }
+
+  Future<void> readSearch() async {
+    var response = await firestoreServices.readFromHome();
+    setState(() {
+      allSearchData = response['search'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: SingleChildScrollView(
@@ -24,59 +45,57 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               Container(
                 padding: EdgeInsets.only(left: 20),
-                child: Text('Discover',
-                style: TextStyle(color: Colors.white, fontFamily: 'Gugi', fontSize: 22)),
+                child: Text(local.get('discover'),
+                    style: TextStyle(
+                        color: Colors.white, fontFamily: 'Gugi', fontSize: 22)),
               ),
               Container(
                 padding: EdgeInsets.only(left: 20),
-                child: Text('Your favorite',
-                style: TextStyle(color: Colors.white, fontFamily: 'Gugi', fontSize: 22)),
+                child: Text(local.get('your_favorite'),
+                    style: TextStyle(
+                        color: Colors.white, fontFamily: 'Gugi', fontSize: 22)),
               ),
-
               Container(
-                margin: EdgeInsets.only(top: 20),
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: TextSearchField(
-                  onChange: (String value){
-                    if(value.length > 0){
-                      setState(() {
-                        searching = true;                        
-                      });
-                    }else{
-                      setState(() {
-                        searching = false;
-                      });
-                    }
-                  },
-                )
-              ),
-
+                  margin: EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: TextSearchField(
+                    onChange: (String value) {
+                      if (value.length > 0) {
+                        setState(() {
+                          searching = true;
+                        });
+                      } else {
+                        setState(() {
+                          searching = false;
+                        });
+                      }
+                    },
+                  )),
               Container(
-                margin: EdgeInsets.only(top: 20),
-                padding: EdgeInsets.only(left: 20),
-                child: 
-                searching ? 
-                AppGridView(products: allProducts)
-                : Column(
-                  children: [
-                    MoreHeader(leading: 'SNEAKERS',),
-                    SubCategoryItems(items: pwshoes),
-                    
-                    SizedBox(height: 10),
-                    MoreHeader(leading: 'WATCHES',),
-                    SubCategoryItems(items: pwatches),
-
-                    SizedBox(height: 10),
-                    MoreHeader(leading: 'STREETWEAR',),
-                    SubCategoryItems(items: pstreet),
-
-                    SizedBox(height: 10),
-                    MoreHeader(leading: 'COLLECTIBLES',),
-                    SubCategoryItems(items: pcollect),
-                    SizedBox(height: 20),
-                  ],
-                ),
-              )
+                  margin: EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.only(left: 20),
+                  child: searching
+                      ? AppGridView(products: allProducts)
+                      :  Container(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: allSearchData.length,
+                                itemBuilder: (BuildContext context, index) {
+                                  var items = allSearchData[index];
+                                  return Column(
+                                    children: [
+                                      MoreHeader(
+                                        leading: items['featured'],
+                                      ),
+                                      SubCategoryItems(item: items['items']),
+                                      SizedBox(height: 10),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ) 
+                  )
             ],
           ),
         ),
@@ -86,7 +105,7 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 class AppGridView extends StatelessWidget {
-  final List<Product> products;
+  final List<dynamic> products;
 
   const AppGridView({Key key, this.products}) : super(key: key);
 
@@ -101,12 +120,11 @@ class AppGridView extends StatelessWidget {
         padding: EdgeInsets.only(top: 5),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        crossAxisCount: 2 ,
+        crossAxisCount: 2,
         childAspectRatio: (itemWidth / itemHeight),
         mainAxisSpacing: 10,
-        children: List.generate(products.length,(index){
+        children: List.generate(products.length, (index) {
           final Product product = products[index];
-
           return GridCardItem(product: product);
         }),
       ),
@@ -120,26 +138,30 @@ class MoreHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context);
+
     return Container(
       padding: EdgeInsets.only(top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(leading,
-          style: TextStyle(
-            fontFamily: 'Gugi',
-            fontSize: 20,
-            color: Colors.white
-          )),
+              style: TextStyle(
+                  fontFamily: 'Gugi', fontSize: 20, color: Colors.white)),
           Material(
             color: Colors.transparent,
             child: InkWell(
               onTap: () => null,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Row(
                   children: [
-                    Text('MORE', style: TextStyle(color: Colors.white, fontSize: 14, fontFamily: 'Gugi')),
+                    Text(local.get('more'),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Gugi')),
                     SizedBox(width: 3),
                     Icon(Icons.arrow_forward, color: Colors.white, size: 16)
                   ],
@@ -153,29 +175,77 @@ class MoreHeader extends StatelessWidget {
   }
 }
 
-class SubCategoryItems extends StatelessWidget {
-  final List<Product> items;
+class SubCategoryItems extends StatefulWidget {
+  final dynamic item;
+  const SubCategoryItems({Key key, this.item}) : super(key: key);
 
-  const SubCategoryItems({Key key, this.items}) : super(key: key);
+  @override
+  _SubCategoryItemsState createState() => _SubCategoryItemsState();
+}
 
+class _SubCategoryItemsState extends State<SubCategoryItems> {
+  PageNotifier _pageNotifier = PageNotifier();
+  // int _previousIndex = 0;
+  // int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 15),
-      height: 300,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: items.map((product) => GestureDetector(
-          onTap: () => fadeNavigator(context, ProductDetail(product: product)),
-            child: Container(
-              width: MediaQuery.of(context).size.width / 1.7 - 12,
-              child: AppCard(product: product)
-            ),
-          )
-        ).toList(),
-      )
+      height: 350,
+      child: Container(
+        child: ChangeNotifierProvider(
+          create: (_) => _pageNotifier,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildCardsList(widget.item),
+            ],
+          ),
+        ),
+      ),
     );
   }
+
+  _buildCardsList(item) => Expanded(
+        flex: 8,
+        child: Transform(
+          transform: Matrix4.identity()..translate(-10.0),
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: item.length,
+              controller: _pageNotifier.pageController,
+              itemBuilder: (context, index) {
+                var data = item[index];
+                return Consumer<PageNotifier>(
+                  builder: (context, value, child) {
+                    if (value.currentPage > index) {
+                      double scaleFactor =
+                          max(1 - (value.currentPage - index) * .5, 0.6);
+                      double angleFactor =
+                          min((value.currentPage - index) * 20, 20);
+                      return Transform(
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.001)
+                          ..scale(scaleFactor)
+                          ..rotateZ(-(pi / 180) * angleFactor),
+                        alignment: Alignment.center,
+                        child: child,
+                      );
+                    }
+                    return child;
+                  },
+                  child: Container(
+                      width: MediaQuery.of(context).size.width / 1.6 - 12,
+                      child: GestureDetector(
+                          onTap: () => fadeNavigator(
+                              context, ProductDetail(product: data)),
+                          child: AppCardSearch(product: data)
+                        )
+                      ),
+                );
+              }),
+        ),
+      );
 }
 
 class TextSearchField extends StatelessWidget {
@@ -184,6 +254,8 @@ class TextSearchField extends StatelessWidget {
   const TextSearchField({Key key, this.onChange}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context);
+
     return TextFormField(
       onChanged: onChange,
       style: TextStyle(
@@ -192,34 +264,29 @@ class TextSearchField extends StatelessWidget {
       decoration: InputDecoration(
         fillColor: Colors.black.withOpacity(.2),
         filled: true,
-        labelText: "Search . . .",
+        labelText: local.get('search_page'),
         prefixIcon: Icon(
           Icons.search,
           color: Colors.white,
           size: 27,
         ),
-        labelStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontFamily: 'Gugi'
-        ),
-        hintStyle: TextStyle(
-          color: Colors.white
-        ),
+        labelStyle:
+            TextStyle(color: Colors.white, fontSize: 18, fontFamily: 'Gugi'),
+        hintStyle: TextStyle(color: Colors.white),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color:Colors.white70,
+            color: Colors.white70,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
-              color:Colors.white,
-            ),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: Colors.white,
           ),
-          hintText: "Search shoes ...", 
         ),
+        hintText: local.get('search_shoes'),
+      ),
     );
   }
 }

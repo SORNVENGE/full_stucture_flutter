@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rare_pair/components/button.dart';
 import 'package:rare_pair/screens/cart_screen.dart';
+import 'package:rare_pair/state/cart_state.dart';
 
 class ProductFilter extends StatelessWidget {
   @override
@@ -16,7 +18,6 @@ class ProductFilter extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: CustomAppBar().build(context),
-
         body: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Container(
@@ -242,16 +243,74 @@ class DetailAppBar extends StatelessWidget {
         actions: [
           GestureDetector(
             onTap: (){
+              print('add to favorite');
+            },
+            child: Container(
+              child: favorite(),
+            )
+          ),
+          GestureDetector(
+            onTap: (){
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) => CartScreen()
               ));
             },
             child: CartButton()
-          )
+          ),
         ],
       )
     );
   }
+
+  Widget favorite(){
+    return Container(
+      margin: EdgeInsets.only(right: 10),
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Icon(Icons.favorite_border, 
+              color: Colors.white
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.black.withOpacity(0.2)),
+        gradient: LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.bottomRight,
+          stops: [0.1, 0.3, 0.7, 0.9],
+          colors: false
+            ? [
+            Color(0xFF3aa9e8),
+            Color(0xFF3ba6ea),
+            Color(0xFF3e92eb),
+            Color(0xFF4285ee),
+          ]
+          : [
+            Color(0xFF2d3649),
+            Color(0xFF2c3548),
+            Color(0xFF222b3a),
+            Color(0xFF1f2633),
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 2,
+            offset: Offset(-2, -2),
+            color: Colors.white30.withOpacity(.1)
+          ),
+          BoxShadow(
+            blurRadius: 3,
+            offset: Offset(2, 2),
+            color: Colors.black38
+          )
+        ]
+      ),
+    );
+}
 }
 
 class CustomAppBar extends StatelessWidget {
@@ -309,14 +368,43 @@ class _CartButtonState extends State<CartButton> {
 
   @override
   Widget build(BuildContext context) {
+    var state = Provider.of<CartState>(context);
+    
     return Listener(
       onPointerUp: onPressedUp,
       onPointerDown: onPressedDown,
       child: Container(
         margin: EdgeInsets.only(right: 10),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Icon(Icons.shopping_cart_outlined, 
+                color: Colors.white
+              ),
+            ),
+            Visibility(
+              visible: state.carts != null && state.carts.itemsCount > 0,
+              child: Positioned(
+                right: 8, top: 5,
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(5, 2, 5, 2),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Text(state.carts != null ? state.carts.itemsCount.toString() : '0', 
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Gugi'
+                    )
+                  ),
+                )
+              ),
+            )
+          ],
         ),
         decoration: BoxDecoration(
           shape: BoxShape.circle,

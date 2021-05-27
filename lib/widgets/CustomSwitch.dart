@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:rare_pair/local/local.dart';
 
 class TermsSwitch extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _TermsSwitchState extends State<TermsSwitch> {
 
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -29,11 +31,11 @@ class _TermsSwitchState extends State<TermsSwitch> {
         Expanded(
           child: RichText(
             text: TextSpan(
-              text: 'I have read and agree to the application',
+              text: local.get('i_have_read'),
               style: TextStyle(color: Colors.white, fontSize: 15, fontFamily: 'Gugi'),
               children: <TextSpan>[
                 TextSpan(
-                  text:' Terms and conditions',
+                  text:local.get('terms_conditions'),
                   style: TextStyle(color: Colors.blue, fontSize: 15, fontFamily: 'Gugi'),
                   recognizer: TapGestureRecognizer()
                     ..onTap = (){

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.vyking.vykingfilamentdemo">
+    package="com.rare_pair.app">
     <uses-feature
         android:glEsVersion="0x00030000"
         android:required="true" />

@@ -3,8 +3,8 @@ import 'package:rare_pair/components/button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
-import 'package:rare_pair/pages/live_chat.dart';
-import 'package:rare_pair/pages/privacy_polocy.dart';
+import 'package:rare_pair/local/local.dart';
+
 
 class TermsCondition extends StatelessWidget {
   final String content = "";
@@ -20,6 +20,7 @@ class TermsCondition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     var local = AppLocalizations.of(context);
     return Container(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       decoration: BoxDecoration(
@@ -32,8 +33,7 @@ class TermsCondition extends StatelessWidget {
             brightness: Brightness.dark,
             actions: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
                 child: GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: AppButton(
@@ -45,9 +45,9 @@ class TermsCondition extends StatelessWidget {
                   child: Center(
                       child: Padding(
                 padding: const EdgeInsets.only(right: 50),
-                child: Text('Term and condition',
+                child: Text(local.get('terms_conditions'),
                     style: TextStyle(
-                        color: Colors.white, fontSize: 22, fontFamily: 'Gugi')),
+                        color: Colors.white, fontSize: 20, fontFamily: 'Gugi')),
               ))),
             ],
           ),
@@ -71,21 +71,23 @@ class TermsCondition extends StatelessWidget {
                           '<html lang="en"><head><style>body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}</style><meta charset="utf-8">  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></head><body>$content</body></html>';
                       return Html(
                           data: html,
-                          onLinkTap: (String url) {
-                            if (url.toLowerCase().contains("privacy-policy")) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PrivacyPolocy()));
-                            } else if (url
-                                .toLowerCase()
-                                .contains("info@king")) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LiveChatScreen()));
-                            }
-                          },
+                          
+                          
+                          // onLinkTap: (String url) {
+                          //   if (url.toLowerCase().contains("privacy-policy")) {
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => PrivacyPolocy()));
+                          //   } else if (url
+                          //       .toLowerCase()
+                          //       .contains("info@king")) {
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => LiveChatScreen()));
+                          //   }
+                          // },
                           style: {
                             "span": Style(
                                 fontSize: FontSize(17.0),

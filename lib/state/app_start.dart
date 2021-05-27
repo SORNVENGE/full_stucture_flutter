@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppState extends ChangeNotifier{
 
-  int _menuIndex = 3;
+  int _menuIndex = 0;
   int get menuIndex => _menuIndex;
   void changeMenuIndex(int index){
     _menuIndex = index;

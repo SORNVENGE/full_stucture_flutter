@@ -3,7 +3,7 @@ import 'package:rare_pair/components/button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
-import 'package:rare_pair/pages/live_chat.dart';
+import 'package:rare_pair/local/local.dart';
 
 class PrivacyPolocy extends StatelessWidget {
   final String content = "";
@@ -18,6 +18,7 @@ class PrivacyPolocy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     var local = AppLocalizations.of(context);
     return Container(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       decoration: BoxDecoration(
@@ -43,7 +44,7 @@ class PrivacyPolocy extends StatelessWidget {
                   child: Center(
                       child: Padding(
                 padding: const EdgeInsets.only(right: 50),
-                child: Text('Privacy and polocy',
+                child: Text(local.get('privacy_policy'),
                     style: TextStyle(
                         color: Colors.white, fontSize: 22, fontFamily: 'Gugi')),
               ))),
@@ -69,18 +70,18 @@ class PrivacyPolocy extends StatelessWidget {
                           '<html lang="en"><head><style>body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}</style><meta charset="utf-8">  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></head><body>$content</body></html>';
                       return Html(
                           data: html,
-                          onLinkTap: (String url) {
-                            if (url.toLowerCase().contains("contact-us")) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LiveChatScreen()));
-                            } 
-                            else if (url .toLowerCase().contains("info@king")) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(
-                                  builder: (context) => LiveChatScreen()));
-                            }
-                          },
+                          // onLinkTap: (String url) {
+                          //   if (url.toLowerCase().contains("contact-us")) {
+                          //     Navigator.push(context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => LiveChatScreen()));
+                          //   } 
+                          //   else if (url .toLowerCase().contains("info@king")) {
+                          //     Navigator.push(context,
+                          //         MaterialPageRoute(
+                          //         builder: (context) => LiveChatScreen()));
+                          //   }
+                          // },
                           style: {
                             "span": Style(
                                 fontSize: FontSize(17.0),

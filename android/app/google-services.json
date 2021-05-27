@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "225915239096",
+    "project_id": "rare-pair-554c3",
+    "storage_bucket": "rare-pair-554c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225915239096:android:f63023ec35f53650f3d24d",
+        "android_client_info": {
+          "package_name": "com.rare_pair.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225915239096-1c3ra58d8u28a9sou909b0so3c2n93l9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1OggNr8yLMBeCkhSzbwbo1VkZHpEuMGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225915239096-1c3ra58d8u28a9sou909b0so3c2n93l9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "225915239096-e5ndt6h2qvvdt0h8qqq1nspem5pq1s56.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rare-pair.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

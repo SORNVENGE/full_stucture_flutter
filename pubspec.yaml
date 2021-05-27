@@ -26,18 +26,47 @@ dependencies:
   flutter_vector_icons: ^1.0.0
 
   flutter_switch: ^0.2.0
-  flutter_html: ^1.3.0
-  dio: ^4.0.0
+  flutter_html: 2.0.0-nullsafety.0
+  # keyboard_visibility: ^0.5.6 //TODO: disble on Android build
+  http: ^0.13.1
+  firebase_core: ^1.1.1
+  cloud_firestore: ^2.1.0
+  firebase_storage: ^8.0.5
+  uuid: 3.0.4
+  intl: ^0.17.0
+  shared_preferences: ^2.0.5
+  image_picker: ^0.7.4
+  flutter_image_compress: ^1.0.0
 
+  dio: ^4.0.0
+  dio_cookie_manager: ^2.0.0
+  cookie_jar: ^3.0.1
+
+  path_provider: ^2.0.1
+
+  flutter_phoenix: ^1.0.0
+  money: ^0.2.1
+  recase: ^4.0.0
+  libphonenumber_plugin: ^0.2.3
+  intl_phone_number_input:
+    path: ./package/intl_phone_number_input
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+#   flutter_launcher_icons: ^0.9.0
+
+# flutter_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/app-logo.jpg"
+
 flutter:
 
   uses-material-design: true
   assets:
+    - assets/app-logo.jpg
     - assets/images/
     - assets/images/002.png
     - assets/images/003.png

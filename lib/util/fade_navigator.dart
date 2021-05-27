@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 void fadeNavigator(BuildContext context, Widget child){
@@ -12,3 +14,5 @@ void fadeNavigator(BuildContext context, Widget child){
     )
   );
 }
+
+double isPlatform({i, a}) => Platform.isAndroid ? a.toDouble() : i.toDouble();

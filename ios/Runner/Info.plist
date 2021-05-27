@@ -24,6 +24,12 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to track feet</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Collects snapshot</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Collects snapshot</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

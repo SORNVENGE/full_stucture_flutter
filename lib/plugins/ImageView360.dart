@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 
 // Enum for rotation direction
 enum RotationDirection { clockwise, anticlockwise }
@@ -93,7 +94,14 @@ class _ImageView360State extends State<ImageView360> {
       },
       child: IndexedStack(
         index: rotationIndex,
-        children: widget.imageList.map((image) => Image(image: image, gaplessPlayback: true)).toList(),
+        children: widget.imageList.map((image) => 
+          PhotoView(
+            backgroundDecoration: BoxDecoration(
+              color: Colors.transparent
+            ),
+            imageProvider: image
+          )
+        ).toList(),
       )
       
       // Image(

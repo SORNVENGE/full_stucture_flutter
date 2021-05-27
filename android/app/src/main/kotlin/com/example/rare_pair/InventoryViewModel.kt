@@ -20,7 +20,7 @@ import org.json.JSONObject
 import java.io.*
 import java.net.URL
 import java.util.regex.Pattern
-import io.vyking.vykingfilamentdemo.R
+import com.rare_pair.app.R
 
 class InventoryViewModel constructor(
     application: Application

@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rare_pair/data/dummy.dart';
+// import 'package:rare_pair/data/dummy.dart';
+import 'package:rare_pair/local/local.dart';
+import 'package:rare_pair/pages/order_tracking.dart';
 import 'package:rare_pair/state/app_start.dart';
-import 'package:rare_pair/screens/checkout_billing.dart';
+import 'package:rare_pair/state/cart_state.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
   @override
@@ -102,6 +105,7 @@ class BottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context);
     return Consumer<AppState>(
       builder: (context, state, child) {
         return Expanded(
@@ -152,7 +156,7 @@ class BottomButton extends StatelessWidget {
                       ),
                       AnimatedDefaultTextStyle(
                         duration: kThemeAnimationDuration,
-                        child: Flexible(child: Text(['HOME', 'CATEGORY', 'SEARCH', 'SETTING'][index])),
+                        child: Flexible(child: Text([local.get('footer_home'),local.get('footer_category'),local.get('footer_search'),local.get('footer_setting')][index])),
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
@@ -160,6 +164,7 @@ class BottomButton extends StatelessWidget {
                           fontSize: state.menuIndex == index ? 12.0 : 0.0
                         )
                       )
+                      
                     ],
                   )
                 ),
@@ -194,6 +199,8 @@ class _ProductBottomNavBarState extends State<CheckutBottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+     var local = AppLocalizations.of(context);
+
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10),
       child: Container(
@@ -226,85 +233,93 @@ class _ProductBottomNavBarState extends State<CheckutBottomNavBar> {
             )
           ]
         ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                child: RichText(
-                  text: TextSpan(
-                    text: '\$',
-                    style: TextStyle(color: Color(0xFF03a9f4), fontSize: 18, fontFamily: 'Gugi'),
-                    children: <TextSpan>[
-                      TextSpan(text: '320.00', 
-                        style: TextStyle(color: Colors.white, fontSize: 23, fontFamily: 'Gugi')
-                      ),
-                    ],
-                  ),
-                )
-              ),
-            ),
-            Expanded(
-              child: Listener(
-                onPointerUp: onPressedUp,
-                onPointerDown: onPressedDown,
-                child: GestureDetector(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => CheckoutBilling()
-                  )),
+        child: Consumer<CartState>(
+          builder: (context, cart, child) {
+            if(cart.loadingCart){
+              return Center(child: CupertinoActivityIndicator());
+            }
+
+            return Row(
+              children: [
+                Expanded(
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        stops: [0.1, 0.5, 0.7, 0.9],
-                        colors: isPressed ? 
-                        [
-                          Color(0xFF3d96ec),
-                          Color(0xFF3d96ec),
-                          Color(0xFF3d96ec),
-                          Color(0xFF3da3eb),
-                        ]
-                        : [
-                          Color(0xFF3da3eb),
-                          Color(0xFF3d96ec),
-                          Color(0xFF4770f0),
-                          Color(0xFF4e4af3),
+                    alignment: Alignment.center,
+                    child: RichText(
+                      text: TextSpan(
+                        text: '\$',
+                        style: TextStyle(color: Color(0xFF03a9f4), fontSize: 18, fontFamily: 'Gugi'),
+                        children: <TextSpan>[
+                          TextSpan(text: cart.carts != null ? cart.carts.total : '0.00', 
+                            style: TextStyle(color: Colors.white, fontSize: 23, fontFamily: 'Gugi')
+                          ),
                         ],
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 2,
-                          offset: Offset(-1.5, -1),
-                          color: Colors.black45.withOpacity(0.3)
-                        ),
-                        BoxShadow(
-                          blurRadius: 3,
-                          offset: Offset(2, 2),
-                          color: Colors.black38
-                        )
-                      ]
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text('check-out'.toUpperCase(), style: TextStyle(
-                            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w300,
-                            fontFamily: 'Gugi',
-                          )),
-                          Icon(Icons.east, color: Colors.white.withOpacity(.9), size: 24),
-                        ],
-                      ),
-                    ),
+                    )
                   ),
                 ),
-              ),
-            )
-          ],
+                Expanded(
+                  child: Listener(
+                    onPointerUp: onPressedUp,
+                    onPointerDown: onPressedDown,
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => OrderTracking()
+                      )),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            stops: [0.1, 0.5, 0.7, 0.9],
+                            colors: isPressed ? 
+                            [
+                              Color(0xFF3d96ec),
+                              Color(0xFF3d96ec),
+                              Color(0xFF3d96ec),
+                              Color(0xFF3da3eb),
+                            ]
+                            : [
+                              Color(0xFF3da3eb),
+                              Color(0xFF3d96ec),
+                              Color(0xFF4770f0),
+                              Color(0xFF4e4af3),
+                            ],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 2,
+                              offset: Offset(-1.5, -1),
+                              color: Colors.black45.withOpacity(0.3)
+                            ),
+                            BoxShadow(
+                              blurRadius: 3,
+                              offset: Offset(2, 2),
+                              color: Colors.black38
+                            )
+                          ]
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(local.get('checkout_cart_btn').toUpperCase(), style: TextStyle(
+                                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w300,
+                                fontFamily: 'Gugi',
+                              )),
+                              Icon(Icons.east, color: Colors.white.withOpacity(.9), size: 24),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            );
+          }
         ),
       ),
     );
@@ -312,10 +327,11 @@ class _ProductBottomNavBarState extends State<CheckutBottomNavBar> {
 }
 
 class DetailBottomNavBar extends StatefulWidget {
-  final int priceIndex;
+  final dynamic priceIndex;
   final bool selecting;
+  final List<dynamic> sizes;
 
-  const DetailBottomNavBar({Key key, this.priceIndex, this.selecting}) : super(key: key);
+  const DetailBottomNavBar({Key key, this.priceIndex, this.selecting, this.sizes}) : super(key: key);
   @override
   _DetailBottomNavBarState createState() => _DetailBottomNavBarState();
 }
@@ -323,19 +339,27 @@ class DetailBottomNavBar extends StatefulWidget {
 class _DetailBottomNavBarState extends State<DetailBottomNavBar> {
   bool isPressed = false;
   void onPressedUp(PointerUpEvent event) {
-    setState(() {
-      isPressed = false;
-    });
+    if(widget.priceIndex != null){
+      setState(() {
+        isPressed = false;
+      });
+    }
   }
 
   void onPressedDown(PointerDownEvent event) {
-    setState(() {
-      isPressed = true;
-    });
+    
+    if(widget.priceIndex != null){
+      setState(() {
+        isPressed = true;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context);
+    var state = Provider.of<CartState>(context);
+
     return Container(
       height: 80,
       padding: EdgeInsets.only(left: 12, right: 20, bottom: 5),
@@ -373,11 +397,15 @@ class _DetailBottomNavBarState extends State<DetailBottomNavBar> {
               alignment: Alignment.center,
               child: RichText(
                 text: TextSpan(
-                  text: '\$',
+                  text: '\$ ',
                   style: TextStyle(color: Color(0xFF03a9f4), fontSize: 18, fontFamily: 'Gugi'),
                   children: <TextSpan>[
-                    TextSpan(text: double.parse(sizes[widget.priceIndex].price).toString(), 
-                      style: TextStyle(color: Colors.white, fontSize: 26, fontFamily: 'Gugi', letterSpacing: 2)
+                    TextSpan(
+                      text: widget.priceIndex != null
+                      ? widget.sizes[widget.priceIndex]['price'].toString() : '0.00',
+                      style: TextStyle(
+                        color:Colors.white.withOpacity(widget.priceIndex == null ? .5 : 1), 
+                        fontSize: 26, fontFamily: 'Gugi', letterSpacing: 2)
                     ),
                   ],
                 ),
@@ -385,56 +413,81 @@ class _DetailBottomNavBarState extends State<DetailBottomNavBar> {
             ),
           ),
           Expanded(
-            child: Listener(
-              onPointerUp: onPressedUp,
-              onPointerDown: onPressedDown,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient( //TODO: if size not yet selected
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    stops: [0.1, 0.5, 0.7, 0.9],
-                    colors: isPressed ? 
-                    [
-                      Color(0xFF3d96ec),
-                      Color(0xFF3d96ec),
-                      Color(0xFF3d96ec),
-                      Color(0xFF3da3eb),
-                    ]
-                    : [
-                      Color(0xFF3da3eb),
-                      Color(0xFF3d96ec),
-                      Color(0xFF4770f0),
-                      Color(0xFF4e4af3),
-                    ],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 2,
-                      offset: Offset(-1.5, -1),
-                      color: Colors.black45.withOpacity(0.3)
+            child: GestureDetector(
+              onTap: (){
+                state.addToCart(
+                  onError: (error){
+                    // print(error);
+                  },
+                  onSuccess: (success){
+                    // print(success);
+                  }
+                );
+              },
+              child: Listener(
+                onPointerUp: onPressedUp,
+                onPointerDown: onPressedDown,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      stops: [0.1, 0.5, 0.7, 0.9],
+                      colors: isPressed ? 
+                      [
+                        Color(0xFF3d96ec),
+                        Color(0xFF3d96ec),
+                        Color(0xFF3d96ec),
+                        Color(0xFF3da3eb),
+                      ]
+                      : widget.priceIndex == null || state.isCartAdding ? [
+                          Color(0xFF3da3eb).withOpacity(.3),
+                          Color(0xFF3d96ec).withOpacity(.3),
+                          Color(0xFF4770f0).withOpacity(.3),
+                          Color(0xFF4e4af3).withOpacity(.3),
+                        ]
+                        : [
+                          Color(0xFF3da3eb),
+                          Color(0xFF3d96ec),
+                          Color(0xFF4770f0),
+                          Color(0xFF4e4af3),
+                        ],
                     ),
-                    BoxShadow(
-                      blurRadius: 3,
-                      offset: Offset(2, 2),
-                      color: Colors.black38
-                    )
-                  ]
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Icon(Icons.add, color: Colors.white.withOpacity(.9), size: 24),
-                      Text('Add to Cart', style: TextStyle(
-                        color: Colors.white, fontSize: 16, fontWeight: FontWeight.w300,
-                        fontFamily: 'Gugi',
-                      )),
-                      
-                    ],
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 2,
+                        offset: Offset(-1.5, -1),
+                        color: Colors.black45.withOpacity(0.3)
+                      ),
+                      BoxShadow(
+                        blurRadius: 3,
+                        offset: Offset(2, 2),
+                        color: Colors.black38
+                      )
+                    ]
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        state.isCartAdding ?
+                          Text(local.get('add_to_cart') + ' ...', 
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(.3), 
+                            fontSize: 16, 
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'Gugi',
+                          ))
+                        : Text(local.get('add_to_cart') , style: TextStyle(
+                          color: Colors.white.withOpacity(widget.priceIndex == null ? .3 : 1), fontSize: 16, fontWeight: FontWeight.w300,
+                          fontFamily: 'Gugi',
+                        )),
+                        
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -452,9 +505,7 @@ class CurvePainter extends CustomPainter {
     var paint = Paint();
     paint.color = Colors.green[800];
     paint.style = PaintingStyle.fill; // Change this to fill
-
     var path = Path();
-
     path.moveTo(0, size.height * 0.25);
     path.quadraticBezierTo(
         size.width / 2, size.height / 2, size.width, size.height * 0.25);

@@ -1,0 +1,11 @@
+framework module VykFootView {
+  umbrella header "VykFootView.h"
+
+  export *
+  module * { export * }
+}
+
+module VykFootView.Swift {
+    header "VykFootView-Swift.h"
+    requires objc
+}
